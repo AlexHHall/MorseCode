@@ -1,5 +1,6 @@
 from WindowSetup import *
 
 app = App()
-Translator = KeyerPage(app)
+Menu = MenuBar(app, "translator", app)
+Page = TranslatorPage(app)
 app.mainloop()
