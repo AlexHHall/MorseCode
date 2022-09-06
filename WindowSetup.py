@@ -12,14 +12,13 @@ english_to_morse_list = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '
                          'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
                          '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', ' ': '/', '!': '-.-.--'}
 
-
 english = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 numbers = "1234567890"
 symbols = "!"
 
 
-def english_to_morse(english):
-    english_list = [i for i in english]
+def english_to_morse(english_text):
+    english_list = [i for i in english_text]
     for k, v in english_to_morse_list.items():
         for i in range(len(english_list)):
             if english_list[i] == k:
@@ -27,8 +26,8 @@ def english_to_morse(english):
     return "".join(i + " " for i in english_list)
 
 
-def morse_to_english(morse):
-    morse_chars = morse.split(" ")
+def morse_to_english(morse_code):
+    morse_chars = morse_code.split(" ")
     for k, v in english_to_morse_list.items():
         for i in range(len(morse_chars)):
             if morse_chars[i] == v:
@@ -151,15 +150,17 @@ class TranslatorPage(ttk.Frame):
     def begin_translate(self):
         translate_type = None
         for i in english_to_morse_list.keys():
-            if i in self.input_box.get(1.0, tk.END).upper():
+            if i == "." or i == "-" or i == " ":
+                continue
+            if i in self.input_box.get(1.0, tk.END).upper().strip():
                 translate_type = "eng_to_morse"
         if not translate_type:
-            if "-" in self.input_box.get(1.0, tk.END).upper() or "." in self.input_box.get(1.0, tk.END).upper():
+            if "-" in self.input_box.get(1.0, tk.END).upper().strip() or "." in self.input_box.get(1.0, tk.END).upper().strip():
                 translate_type = "morse_to_eng"
             else:
                 return "Invalid"
         if translate_type == 'eng_to_morse':
-            translation = english_to_morse(self.input_box.get(1.0, tk.END).upper())
+            translation = english_to_morse(self.input_box.get(1.0, tk.END).upper().strip())
             self.output_box.config(state="normal")
             self.output_box.delete(1.0, tk.END)
             self.output_box.insert(1.0, translation)
@@ -181,22 +182,34 @@ class LegendPage(ttk.Frame):
             if not k == " ":
                 i += 25
                 if i % 2 == 1:
-                    tk.Label(master, text=f"{k}   :   {v}").place(x=300, y=i/2 + 15)
+                    tk.Label(master, text=f"{k}   :   {v}").place(x=300, y=i / 2 + 15)
                 else:
-                    tk.Label(master, text=f"{k}   :   {v}").place(x=720, y=i/2)
+                    tk.Label(master, text=f"{k}   :   {v}").place(x=720, y=i / 2)
 
 
 class LearnPage(ttk.Frame):
     def __init__(self, options):
         super().__init__(options)
+        self.game_playing = False
+        self.question = None
+        self.start_new = False
+        self.answer = None
+        self.answer_box = None
+        self.question_label = None
         master = self.master
         self.game_type = tk.StringVar(value='english-morse')
-        self.english_to_morse = ttk.Radiobutton(master, variable=self.game_type, text="English To Morse Code", value="morse-english")
-        self.morse_to_english = ttk.Radiobutton(master, variable=self.game_type, text="Morse Code to English", value="english-morse")
+        self.english_to_morse = ttk.Radiobutton(master, variable=self.game_type, text="English To Morse Code",
+                                                value="morse-english")
+        self.morse_to_english = ttk.Radiobutton(master, variable=self.game_type, text="Morse Code to English",
+                                                value="english-morse")
         self.morse_to_english.pack()
         self.english_to_morse.pack()
         self.letters_var, self.numbers_var, self.symbols_var = tk.BooleanVar(), tk.BooleanVar(), tk.BooleanVar()
-        self.letters, self.numbers, self.symbols = ttk.Checkbutton(master, text="Letters", variable=self.letters_var), ttk.Checkbutton(master, text="Numbers", variable=self.numbers_var), ttk.Checkbutton(master, text="Symbols", variable=self.symbols_var)
+        self.letters, self.numbers, self.symbols = ttk.Checkbutton(master, text="Letters",
+                                                                   variable=self.letters_var), ttk.Checkbutton(master,
+                                                                                                               text="Numbers",
+                                                                                                               variable=self.numbers_var), ttk.Checkbutton(
+            master, text="Symbols", variable=self.symbols_var)
         self.letters_var.set(True)
         self.numbers_var.set(True)
         self.letters.pack()
@@ -205,44 +218,70 @@ class LearnPage(ttk.Frame):
         self.start_button = ttk.Button(master, command=self.start_game, text="Start")
         self.start_button.pack()
 
-
-
     def start_game(self):
         print("Starting ")
-        all_items_list = {}
+        self.all_items_list = {}
 
         if self.letters_var.get():
             for k, v in english_to_morse_list.items():
                 if k in english:
-                    all_items_list[k] = v
+                    self.all_items_list[k] = v
         if self.numbers_var.get():
             for k, v in english_to_morse_list.items():
                 if k in numbers:
-                    all_items_list[k] = v
+                    self.all_items_list[k] = v
         if self.symbols_var.get():
             for k, v in english_to_morse_list.items():
                 if k in symbols:
-                    all_items_list[k] = v
+                    self.all_items_list[k] = v
 
-        if all_items_list == {}:
+        if self.all_items_list == {}:
             return
-
-        if self.game_type.get() == "english-morse":
-            question = random.choice([k for k, v in all_items_list.items()])
-            print(question)
-            answer = english_to_morse(question)
-            print(answer)
-        elif self.game_type.get() == "morse-english":
-            print("M-E")
 
         self.letters.destroy()
         self.numbers.destroy()
         self.symbols.destroy()
         self.start_button.destroy()
+        self.english_to_morse.destroy()
+        self.morse_to_english.destroy()
 
-        game_playing = False
+        self.game_playing = True
 
+        if self.game_type.get() == "english-morse":
+            self.question = random.choice([k for k, v in self.all_items_list.items()])
+            print(self.question)
+            self.answer = english_to_morse(self.question)
+            print(self.answer)
+            self.question_label = ttk.Label(self.master, text=self.question, font=("Ariel", 25))
+            self.question_label.pack()
+            self.answer_box = ttk.Entry(self.master, font=("Ariel", 25), justify="center")
+            self.answer_box.bind("<KeyPress>", self.submit_answer)
+            self.answer_box.pack()
+        elif self.game_type.get() == "morse-english":
+            self.question = random.choice([v for k, v in self.all_items_list.items()])
+            print(self.question)
+            self.answer = morse_to_english(self.question)
+            print(self.answer)
+            self.question_label = ttk.Label(self.master, text=self.question, font=("Ariel", 25))
+            self.question_label.pack()
+            self.answer_box = ttk.Entry(self.master, font=("Ariel", 25), justify="center")
+            self.answer_box.bind("<KeyPress>", self.submit_answer)
+            self.answer_box.pack()
 
+    def submit_answer(self, e):
+        if e.keysym == "Return":
+            if self.answer_box.get().strip().upper() == self.answer.strip().upper():
+                print("Correct")
+                self.new_letter()
+
+    def new_letter(self):
+        if self.
+        self.question = random.choice([k for k, v in self.all_items_list.items()])
+        print(self.question)
+        self.answer = english_to_morse(self.question)
+        print(self.answer)
+        self.answer_box.delete(0, tk.END)
+        self.question_label.config(text=self.question)
 
 
 class MenuBar(ttk.Frame):
