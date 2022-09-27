@@ -6,26 +6,26 @@
         "bad_guesses": []
     },
     "B": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 2,
+        "correct": 2,
         "incorrect": 0,
         "bad_guesses": []
     },
     "C": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },
     "D": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 2,
+        "correct": 2,
         "incorrect": 0,
         "bad_guesses": []
     },
     "E": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 2,
+        "correct": 2,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -42,14 +42,14 @@
         "bad_guesses": []
     },
     "H": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
     "I": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -66,8 +66,8 @@
         "bad_guesses": []
     },
     "L": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -78,14 +78,14 @@
         "bad_guesses": []
     },
     "N": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 4,
+        "correct": 4,
         "incorrect": 0,
         "bad_guesses": []
     },
     "O": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 2,
+        "correct": 2,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -96,32 +96,34 @@
         "bad_guesses": []
     },
     "Q": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },
     "R": {
-        "attempts": 0,
+        "attempts": 1,
         "correct": 0,
-        "incorrect": 0,
-        "bad_guesses": []
+        "incorrect": 1,
+        "bad_guesses": [
+            ".-.."
+        ]
     },
     "S": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 2,
+        "correct": 2,
         "incorrect": 0,
         "bad_guesses": []
     },
     "T": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },
     "U": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 4,
+        "correct": 4,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -144,8 +146,8 @@
         "bad_guesses": []
     },
     "Y": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -156,20 +158,20 @@
         "bad_guesses": []
     },
     "1": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 2,
+        "correct": 2,
         "incorrect": 0,
         "bad_guesses": []
     },
     "2": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 2,
+        "correct": 2,
         "incorrect": 0,
         "bad_guesses": []
     },
     "3": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -186,26 +188,26 @@
         "bad_guesses": []
     },
     "6": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },
     "7": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 2,
+        "correct": 2,
         "incorrect": 0,
         "bad_guesses": []
     },
     "8": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },
     "9": {
-        "attempts": 0,
-        "correct": 0,
+        "attempts": 1,
+        "correct": 1,
         "incorrect": 0,
         "bad_guesses": []
     },

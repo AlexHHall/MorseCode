@@ -344,16 +344,12 @@ class LearnPage(ttk.Frame):
     def new_letter(self):
         if self.game_type.get() == "english-morse":
             self.question = random.choice([k for k, v in self.all_items_list.items()])
-            print(self.question)
             self.answer = english_to_morse(self.question)
-            print(self.answer)
             self.answer_box.delete(0, tk.END)
             self.question_label.config(text=self.question)
         else:
             self.question = random.choice([v for k, v in self.all_items_list.items()])
-            print(self.question)
             self.answer = morse_to_english(self.question)
-            print(self.answer)
             self.answer_box.delete(0, tk.END)
             self.question_label.config(text=self.question)
 
