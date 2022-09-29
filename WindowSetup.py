@@ -306,22 +306,8 @@ class LearnPage(ttk.Frame):
                 else:
                     if self.answer_box.get().strip().upper() == self.answer.strip().upper():
                         self.correct_label.config(text="Correct!")
-                        with open("chars.json", "r") as file:
-                            data = json.load(file)
-                            data[morse_to_english(self.answer.strip().upper())]["attempts"] += 1
-                            data[morse_to_english(self.answer.strip().upper())]["correct"] += 1
-                        with open("chars.json", "w") as file:
-                            file.write(json.dumps(data, indent=4))
                     else:
                         self.correct_label.config(text="Incorrect!")
-                        with open("chars.json", "r") as file:
-                            data = json.load(file)
-                            data[morse_to_english(self.answer.strip().upper())]["attempts"] += 1
-                            data[morse_to_english(self.answer.strip().upper())]["incorrect"] += 1
-                            data[morse_to_english(self.answer.strip().upper())]["bad_guesses"].append(
-                                self.answer_box.get().strip().upper())
-                        with open("chars.json", "w") as file:
-                            file.write(json.dumps(data, indent=4))
                 self.new_letter()
         # if not e.keysym == "." or not e.keysym == "-":
         # self.answer_box.delete(1.0, "end-1")
