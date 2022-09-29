@@ -8,22 +8,6 @@ import json
 current_window = "Translator"
 
 
-def create_chars_file():
-    chars_dict = {}
-    with open("chars.json", "w") as file:
-        for i in english + numbers + symbols:
-            chars_dict[i] = {
-                "attempts": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "bad_guesses": []
-            }
-        file.write(json.dumps(chars_dict, indent=4))
-
-
-create_chars_file()
-
-
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -311,33 +295,34 @@ class LearnPage(ttk.Frame):
 
     def submit_answer(self, e):
         if e.keysym == "Return":
-            if self.game_type.get() == "morse-english":
-                if self.answer_box.get().strip().upper() == self.answer.strip().upper():
-                    self.correct_label.config(text=f"{self.answer_box.get().strip().upper()} was Correct!")
-                    self.new_letter()
+            if not self.answer_box.get() == "".rstrip(" ") and not " " in self.answer_box.get():
+                if self.game_type.get() == "morse-english":
+                    if self.answer_box.get().strip().upper() == self.answer.strip().upper():
+                        self.correct_label.config(text="Correct!")
+                        self.new_letter()
+                    else:
+                        self.correct_label.config(text="Incorrect!")
+                        self.new_letter()
                 else:
-                    self.correct_label.config(text=f"{self.answer_box.get().strip().upper()} was Incorrect!")
-                    self.new_letter()
-            else:
-                if self.answer_box.get().strip().upper() == self.answer.strip().upper():
-                    self.correct_label.config(text=f"{morse_to_english(self.answer_box.get().strip().upper())} was Correct!")
-                    with open("chars.json", "r") as file:
-                        data = json.load(file)
-                        data[morse_to_english(self.answer.strip().upper())]["attempts"] += 1
-                        data[morse_to_english(self.answer.strip().upper())]["correct"] += 1
-                    with open("chars.json", "w") as file:
-                        file.write(json.dumps(data, indent=4))
-                else:
-                    self.correct_label.config(text=f"{morse_to_english(self.answer_box.get().strip().upper())} was Incorrect!")
-                    with open("chars.json", "r") as file:
-                        data = json.load(file)
-                        data[morse_to_english(self.answer.strip().upper())]["attempts"] += 1
-                        data[morse_to_english(self.answer.strip().upper())]["incorrect"] += 1
-                        data[morse_to_english(self.answer.strip().upper())]["bad_guesses"].append(
-                            self.answer_box.get().strip().upper())
-                    with open("chars.json", "w") as file:
-                        file.write(json.dumps(data, indent=4))
-            self.new_letter()
+                    if self.answer_box.get().strip().upper() == self.answer.strip().upper():
+                        self.correct_label.config(text="Correct!")
+                        with open("chars.json", "r") as file:
+                            data = json.load(file)
+                            data[morse_to_english(self.answer.strip().upper())]["attempts"] += 1
+                            data[morse_to_english(self.answer.strip().upper())]["correct"] += 1
+                        with open("chars.json", "w") as file:
+                            file.write(json.dumps(data, indent=4))
+                    else:
+                        self.correct_label.config(text="Incorrect!")
+                        with open("chars.json", "r") as file:
+                            data = json.load(file)
+                            data[morse_to_english(self.answer.strip().upper())]["attempts"] += 1
+                            data[morse_to_english(self.answer.strip().upper())]["incorrect"] += 1
+                            data[morse_to_english(self.answer.strip().upper())]["bad_guesses"].append(
+                                self.answer_box.get().strip().upper())
+                        with open("chars.json", "w") as file:
+                            file.write(json.dumps(data, indent=4))
+                self.new_letter()
         # if not e.keysym == "." or not e.keysym == "-":
         # self.answer_box.delete(1.0, "end-1")
 

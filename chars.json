@@ -6,26 +6,28 @@
         "bad_guesses": []
     },
     "B": {
-        "attempts": 2,
-        "correct": 2,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
     "C": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
     "D": {
-        "attempts": 2,
-        "correct": 2,
-        "incorrect": 0,
-        "bad_guesses": []
+        "attempts": 1,
+        "correct": 0,
+        "incorrect": 1,
+        "bad_guesses": [
+            "BHTVBGBVHFBVGF"
+        ]
     },
     "E": {
-        "attempts": 2,
-        "correct": 2,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -48,8 +50,8 @@
         "bad_guesses": []
     },
     "I": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -66,8 +68,8 @@
         "bad_guesses": []
     },
     "L": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -78,14 +80,14 @@
         "bad_guesses": []
     },
     "N": {
-        "attempts": 4,
-        "correct": 4,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
     "O": {
-        "attempts": 2,
-        "correct": 2,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -96,34 +98,32 @@
         "bad_guesses": []
     },
     "Q": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
     "R": {
-        "attempts": 1,
+        "attempts": 0,
         "correct": 0,
-        "incorrect": 1,
-        "bad_guesses": [
-            ".-.."
-        ]
+        "incorrect": 0,
+        "bad_guesses": []
     },
     "S": {
-        "attempts": 2,
-        "correct": 2,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
     "T": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
     "U": {
-        "attempts": 4,
-        "correct": 4,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -146,8 +146,8 @@
         "bad_guesses": []
     },
     "Y": {
-        "attempts": 1,
-        "correct": 1,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -158,14 +158,14 @@
         "bad_guesses": []
     },
     "1": {
-        "attempts": 2,
-        "correct": 2,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
     "2": {
-        "attempts": 2,
-        "correct": 2,
+        "attempts": 0,
+        "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
     },
@@ -188,34 +188,36 @@
         "bad_guesses": []
     },
     "6": {
-        "attempts": 1,
-        "correct": 1,
-        "incorrect": 0,
-        "bad_guesses": []
-    },
-    "7": {
-        "attempts": 2,
-        "correct": 2,
-        "incorrect": 0,
-        "bad_guesses": []
-    },
-    "8": {
-        "attempts": 1,
-        "correct": 1,
-        "incorrect": 0,
-        "bad_guesses": []
-    },
-    "9": {
-        "attempts": 1,
-        "correct": 1,
-        "incorrect": 0,
-        "bad_guesses": []
-    },
-    "0": {
         "attempts": 0,
         "correct": 0,
         "incorrect": 0,
         "bad_guesses": []
+    },
+    "7": {
+        "attempts": 0,
+        "correct": 0,
+        "incorrect": 0,
+        "bad_guesses": []
+    },
+    "8": {
+        "attempts": 0,
+        "correct": 0,
+        "incorrect": 0,
+        "bad_guesses": []
+    },
+    "9": {
+        "attempts": 0,
+        "correct": 0,
+        "incorrect": 0,
+        "bad_guesses": []
+    },
+    "0": {
+        "attempts": 1,
+        "correct": 0,
+        "incorrect": 1,
+        "bad_guesses": [
+            "\"'`"
+        ]
     },
     "!": {
         "attempts": 0,
