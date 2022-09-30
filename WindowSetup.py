@@ -3,7 +3,6 @@ from tkinter import ttk
 import random
 from settings import *
 import time
-import json
 
 current_window = "Translator"
 
@@ -80,12 +79,11 @@ class KeyerPage(ttk.Frame):
                     self.time_of_press = time.time()
                     total_released_time = self.time_of_press - self.time_of_release  # Get Total Time that the Space Bar was released for
                     if self.dit_time * 3 < total_released_time < self.dit_time * 7:
-                        self.currently_typing_str = self.currently_typing_str + " "  # If the Total Time was longer than the required amount for a space but less than for a "/" then add a space to the text
+                        self.currently_typing_str = self.currently_typing_str + " "  # If the Total Time was longer than the required amount for a space but less than for a "/" then add a space
                     elif total_released_time > self.dit_time * 3:
                         if not self.currently_typing_str == "":
                             self.currently_typing_str = self.currently_typing_str + " / "  # If the Total Time was long enough to add a "/" then add a "/" to the text
                 self.pressed = True
-
                 self.update_text_box()  # Update Label to Display Text
 
     def key_up(self, e):
@@ -103,7 +101,14 @@ class KeyerPage(ttk.Frame):
 
     def clear_box(self):
         self.currently_typing_str = ""
-        self.update_text_box()
+        self.english_display_label.config(state="normal")
+        self.english_display_label.delete(1.0, tk.END)
+        self.english_display_label.insert(1.0, "")
+        self.english_display_label.config(state="disabled")
+        self.morse_display_label.config(state="normal")
+        self.morse_display_label.delete(1.0, tk.END)
+        self.morse_display_label.insert(1.0, self.currently_typing_str)
+        self.morse_display_label.config(state="disabled")
 
     def update_text_box(self):
         self.morse_display_label.config(state="normal")
@@ -192,6 +197,7 @@ class LegendPage(ttk.Frame):
 class LearnPage(ttk.Frame):
     def __init__(self, options):
         super().__init__(options)
+        self.all_items_list = None
         self.correct_label = None
         self.game_playing = False
         self.question = None
@@ -236,7 +242,6 @@ class LearnPage(ttk.Frame):
         self.start_button.pack()
 
     def start_game(self):
-        print("Starting ")
         self.all_items_list = {}
 
         if self.letters_var.get():
@@ -291,6 +296,8 @@ class LearnPage(ttk.Frame):
             self.answer_box = tk.Entry(self.master, font=(font, 25), justify="center", bg=button_color)
             self.answer_box.bind("<KeyPress>", self.submit_answer)
             self.answer_box.pack()
+            self.help_button = tk.Button(self.master, text="?", font=(font, 25, "bold"), bg=button_color, command=self.help)
+            self.help_button.pack()
 
     def submit_answer(self, e):
         if e.keysym == "Return":
@@ -308,8 +315,11 @@ class LearnPage(ttk.Frame):
                     else:
                         self.correct_label.config(text="Incorrect!")
                 self.new_letter()
-        # if not e.keysym == "." or not e.keysym == "-":
-        # self.answer_box.delete(1.0, "end-1")
+        if not e.keysym == "period" and not e.keysym == "minus":
+            text = self.answer_box.get()
+            text = text[:-2]
+            self.answer_box.delete('0', tk.END)
+            self.answer_box.insert(tk.INSERT, text)
 
     def new_letter(self):
         if self.game_type.get() == "english-morse":
@@ -324,7 +334,10 @@ class LearnPage(ttk.Frame):
             self.question_label.config(text=self.question)
 
     def help(self):
-        self.correct_label.config(text=f"{morse_to_english(self.answer.strip().upper())} is {self.answer.strip().upper()}")
+        if self.game_type.get() == "english-morse":
+            self.correct_label.config(text=f"{morse_to_english(self.answer.strip().upper())} is {self.answer.strip().upper()}")
+        else:
+            self.correct_label.config(text=f"{english_to_morse(self.answer.strip().upper())} is {self.answer.strip().upper()}")
 
 
 class MenuBar(ttk.Frame):
